@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="mr">
 <head>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <script>
 (function(){
@@ -9,7 +9,7 @@ emailjs.init("YOUR_PUBLIC_KEY");
 })();
 </script>
 <link rel="preload" as="image" href="image/k.jpeg">
-
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gram Panchayat Karanjon</title>
@@ -1271,7 +1271,26 @@ margin-top:15px;
   max-width:100%;
   object-fit:contain;
 }
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
 
+.marquee p {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollText 12s linear infinite;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 </style>
 </head>
 
@@ -1302,11 +1321,10 @@ margin-top:15px;
 </nav>
 
 <div class="notice">
-<div class="marquee">
-  <p id="noticeText">महत्वाची सूचना: ग्रामसभा 15 मार्च रोजी होणार आहे.</p>
+  <div class="marquee">
+    <p id="noticeText">महत्वाची सूचना: ग्रामसभा 15 मार्च रोजी होणार आहे.</p>
+  </div>
 </div>
-</div>
-
 <div class="container">
 
 <!-- HOME -->
@@ -1330,7 +1348,7 @@ margin-top:15px;
 </div>
 <div class="center panel">
 <div class="carousel">
-<img src="image/k.webp" class="slide active" loading="lazy">
+<img src="image/k.jpeg" class="slide active" loading="lazy">
 <img src="image/l.jpeg" class="slide" loading="lazy">
 <img src="image/i.jpeg" class="slide" loading="lazy">
 </div>
@@ -1443,7 +1461,7 @@ margin-top:15px;
 </div> <!-- about section close -->
 
 <!-- SERVICES -->
-<div id="services" class="section services-section">
+<section id="services" class="section services-section">
 
   <h2 class="services-title">सेवा विभाग</h2>
 
@@ -1543,7 +1561,7 @@ margin-top:15px;
 
       <tbody>
         <tr>
-          <td><img src="image/default.png"></td>
+          <td><img src="image/" class="member-photo"></td>
           <td>सौ.सुमन बालाराम गवते </td>
           <td><span class="badge member">सदस्य</span></td>
           <td>२</td>
@@ -1551,7 +1569,7 @@ margin-top:15px;
         </tr>
 
         <tr>
-          <td><img src="image/default.png"></td>
+          <td><img src="image/" class="member-photo"></td>
           <td>सौ.वर्षा विनोद सायरे</td>
           <td><span class="badge member">सदस्य</span></td>
           <td>१</td>
@@ -1648,6 +1666,10 @@ margin-top:15px;
 <span>कार्यक्रम</span>
 </div>
 
+<div class="gallery-box event">
+<img src="b.jpeg" loading="lazy">
+<span>शाळा कार्यक्रम</span>
+</div>
 </div>
 
 </div>
@@ -1878,6 +1900,7 @@ margin-top:15px;
 <script>
 // Section Switch
 function showSection(id){
+
   document.querySelectorAll('.section').forEach(sec=>{
     sec.classList.remove('active');
   });
@@ -1888,12 +1911,15 @@ function showSection(id){
     element.classList.add('active');
     window.scrollTo({ top:0, behavior:'smooth'});
   }
-}
 
-// Language Toggle
+}
+// PDF Preview
+function previewPDF(file){alert("PDF Preview: "+file);}
+
 let lang="mr";
 
 function toggleLanguage(){
+
 if(lang==="mr"){
   lang="en";
 
@@ -1901,32 +1927,58 @@ if(lang==="mr"){
 
   document.getElementById("titleText").innerText="Gram Panchayat Karanjon";
   document.getElementById("subText").innerText="Taluka-Vasai | District-Palghar";
+  document.getElementById("navHome").innerText="Home";
+  document.getElementById("navAbout").innerText="About";
+  document.getElementById("navServices").innerText="Services";
+  document.getElementById("navTeam").innerText="Team";
+  document.getElementById("navGallery").innerText="Gallery";
+  document.getElementById("navTax").innerText="Tax";
+  document.getElementById("navComplaint").innerText="Complaint";
+  document.getElementById("navContact").innerText="Contact";
+
+  document.querySelector(".hero-title").innerText="Welcome to Gram Panchayat Karanjon";
+  document.querySelector(".hero-sub").innerText="Committed to transparent governance";
+
+  document.getElementById("noticeText").innerText="Important Notice: Gram Sabha on 15 March.";
 
 }else{
+
   lang="mr";
 
   document.querySelector(".lang-btn").innerText="English";
 
   document.getElementById("titleText").innerText="ग्रामपंचायत करंजोन";
   document.getElementById("subText").innerText="तालुका-वसई | जिल्हा-पालघर";
-}
-}
+  document.getElementById("navHome").innerText="मुख्यपृष्ठ";
+  document.getElementById("navAbout").innerText="माहिती";
+  document.getElementById("navServices").innerText="सेवा";
+  document.getElementById("navTeam").innerText="संघ";
+  document.getElementById("navGallery").innerText="गॅलरी";
+  document.getElementById("navTax").innerText="कर";
+  document.getElementById("navComplaint").innerText="तक्रार";
+  document.getElementById("navContact").innerText="संपर्क";
 
-// Visitor Count
+  document.querySelector(".hero-title").innerText="ग्रामपंचायत करंजोन मध्ये आपले स्वागत आहे";
+  document.querySelector(".hero-sub").innerText="पारदर्शक व लोकाभिमुख प्रशासनासाठी कटिबद्ध";
+
+  document.getElementById("noticeText").innerText="महत्वाची सूचना: ग्रामसभा 15 मार्च रोजी होणार आहे.";
+}
+}let last = document.getElementById("lastUpdated");
+if(last){
+  last.innerText = new Date().toLocaleDateString();
+}
 let count = localStorage.getItem("visitCount");
 count = count ? parseInt(count)+1 : 1;
 localStorage.setItem("visitCount",count);
-
 let visitorEl = document.getElementById("visitorCount");
 if(visitorEl){
    visitorEl.innerText = count;
 }
-
-// Scroll Top Button
 window.onscroll = function(){
-  let btn = document.getElementById("topBtn");
-  if(btn){
-    btn.style.display = document.documentElement.scrollTop > 200 ? "block" : "none";
+  if(document.documentElement.scrollTop > 200){
+    document.getElementById("topBtn").style.display="block";
+  } else {
+    document.getElementById("topBtn").style.display="none";
   }
 };
 
@@ -1934,7 +1986,6 @@ function scrollToTop(){
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// TAX
 function checkTax(){
     let property = document.getElementById("propertyNumber").value;
 
@@ -1949,21 +2000,68 @@ function checkTax(){
     }
 }
 
-// Payment
 function openPayment(){
     document.getElementById("paymentModal").style.display="flex";
 }
+
 function closePayment(){
     document.getElementById("paymentModal").style.display="none";
 }
+
 function showQR(){
     document.getElementById("qrModal").style.display="flex";
 }
+
 function closeQR(){
     document.getElementById("qrModal").style.display="none";
 }
 
-// GALLERY
+
+// Auto status change simulation
+setTimeout(()=>{
+savedComplaint.status="In Progress";
+document.getElementById("statusBadge").innerText="In Progress";
+document.getElementById("statusBadge").className="badge progress";
+},5000);
+
+setTimeout(()=>{
+savedComplaint.status="Resolved";
+document.getElementById("statusBadge").innerText="Resolved";
+document.getElementById("statusBadge").className="badge resolved";
+},10000);
+
+
+function downloadReceipt(){
+window.print();
+}
+
+function trackComplaint(){
+document.getElementById("trackSection").style.display="block";
+}
+
+function checkStatus(){
+let id=document.getElementById("trackID").value;
+
+if(id===savedComplaint.id){
+document.getElementById("trackResult").innerHTML=
+"स्थिती: <span class='badge resolved'>"+savedComplaint.status+"</span>";
+}else{
+document.getElementById("trackResult").innerText="तक्रार क्रमांक सापडला नाही";
+}
+}
+document.getElementById("contactForm").addEventListener("submit",function(e){
+e.preventDefault();
+
+document.getElementById("contactSuccess").style.display="block";
+
+setTimeout(()=>{
+document.getElementById("contactSuccess").style.display="none";
+this.reset();
+},4000);
+});
+
+/* ================= GALLERY FIXED SCRIPT ================= */
+
 let currentIndex = 0;
 let images = [];
 
@@ -1971,8 +2069,6 @@ function initGallery(){
     images = [...document.querySelectorAll(".gallery-box img")];
 
     images.forEach((img,index)=>{
-        if(!img.src) return;
-
         img.addEventListener("click",()=>{
             document.getElementById("lightbox").style.display="flex";
             document.querySelector(".lightbox-img").src=img.src;
@@ -1983,6 +2079,7 @@ function initGallery(){
 }
 
 function filterGallery(category,btn){
+
     let boxes=document.querySelectorAll(".gallery-box");
     let buttons=document.querySelectorAll(".gallery-filters button");
 
@@ -1997,47 +2094,55 @@ function filterGallery(category,btn){
         }
     });
 
+    // Update visible images list
     images = [...document.querySelectorAll(".gallery-box")]
               .filter(box=>box.style.display!=="none")
               .map(box=>box.querySelector("img"));
 }
-
+/* Lightbox Controls */
 document.getElementById("lightboxClose").onclick=()=>{
     document.getElementById("lightbox").style.display="none";
 };
 
 document.querySelector(".next").onclick=()=>{
-    if(images.length===0) return;
     currentIndex=(currentIndex+1)%images.length;
     document.querySelector(".lightbox-img").src=images[currentIndex].src;
     updateCounter();
 };
 
 document.querySelector(".prev").onclick=()=>{
-    if(images.length===0) return;
     currentIndex=(currentIndex-1+images.length)%images.length;
     document.querySelector(".lightbox-img").src=images[currentIndex].src;
     updateCounter();
 };
 
 function updateCounter(){
-    document.querySelector(".counter").innerText =
+    document.querySelector(".counter").innerText=
     (currentIndex+1)+" / "+images.length;
 }
 
-// Loader + Slider
 window.addEventListener("load", function(){
 
-const loader = document.getElementById("loader");
-if(loader){
-  loader.style.opacity="0";
-  setTimeout(()=>{
+  let loader = document.getElementById("loader");
+
+  if(loader){
+    loader.style.opacity="0";
+
+    setTimeout(()=>{
+      loader.style.display="none";
+    },500);
+  }
+
+});
+
+setTimeout(()=>{
+  let loader = document.getElementById("loader");
+  if(loader){
     loader.style.display="none";
-  },500);
-}
+  }
+},2000);
 
-}
-
+// Gallery init
 initGallery();
 
 // Slider
@@ -2045,39 +2150,35 @@ let slides = document.querySelectorAll(".slide");
 let index = 0;
 
 function changeSlide(){
-  slides[index].classList.remove("active");
-  index = (index + 1) % slides.length;
-  slides[index].classList.add("active");
+slides[index].classList.remove("active");
+index = (index + 1) % slides.length;
+slides[index].classList.add("active");
 }
 
 setInterval(changeSlide,3000);
 
-});
 
-// COMPLAINT
-let savedComplaint = {};
-
+let savedComplaint = {
+  id: "",
+  status: "Pending"
+};
 function submitComplaint(){
+let complaintID = "GP" + Math.floor(Math.random()*100000);  // ✅ ADD THIS
 
 let name=document.getElementById("name").value;
 let mobile=document.getElementById("mobile").value;
 let type=document.getElementById("type").value;
 let message=document.getElementById("message").value;
 
+savedComplaint.id = complaintID;
+savedComplaint.status = "Pending";
 if(name=="" || mobile=="" || message==""){
 alert("कृपया सर्व माहिती भरा");
 return;
 }
 
-// Generate Complaint ID
-let complaintID = "CMP" + Date.now();
+/* EMAIL SEND */
 
-savedComplaint = {
-  id: complaintID,
-  status: "Pending"
-};
-
-// Email
 emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
 name:name,
 mobile:mobile,
@@ -2085,24 +2186,27 @@ type:type,
 message:message
 });
 
-// WhatsApp
+/* WHATSAPP MESSAGE */
+
 let text="नवीन तक्रार\n\nनाव: "+name+
 "\nमोबाईल: "+mobile+
 "\nप्रकार: "+type+
 "\nतक्रार: "+message;
 
 let whatsappURL="https://wa.me/919850474114?text="+encodeURIComponent(text);
+
 window.open(whatsappURL,"_blank");
 
-// Success
+/* SUCCESS MESSAGE */
+
 document.getElementById("successMessage").style.display="block";
 
-// Reset
+/* FORM RESET */
+
 document.getElementById("name").value="";
 document.getElementById("mobile").value="";
 document.getElementById("message").value="";
 
-// Google Sheet
 fetch("https://script.google.com/macros/s/AKfycbyIkSbVRnlAD9DFKlxZFOIQe1t69OJ2GlLLQN3kog4DetNa2fxN-IZL_69jGgpy7Pcm/exec",{
 method:"POST",
 body:JSON.stringify({
@@ -2114,28 +2218,7 @@ id:complaintID
 })
 });
 
-// Status auto change
-setTimeout(()=>{
-  savedComplaint.status="In Progress";
-},5000);
-
-setTimeout(()=>{
-  savedComplaint.status="Resolved";
-},10000);
-
 }
-
-// Contact Form
-document.getElementById("contactForm").addEventListener("submit",function(e){
-e.preventDefault();
-
-document.getElementById("contactSuccess").style.display="block";
-
-setTimeout(()=>{
-document.getElementById("contactSuccess").style.display="none";
-this.reset();
-},4000);
-});
 </script>
 </body>
 </html>
